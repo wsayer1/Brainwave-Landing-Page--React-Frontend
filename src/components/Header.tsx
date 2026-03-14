@@ -40,14 +40,16 @@ const Header = () => {
         openNavigation ? "bg-n-8" : "bg-n-8/90 backdrop-blur-sm"
       }`}
     >
-      <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-        <a className="flex shrink-0 items-center xl:mr-8" href="#hero">
+      <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4 min-h-[3.25rem]">
+        <a className="flex shrink-0 items-center justify-center w-[9rem] min-w-[9rem] h-9 xl:mr-8" href="#hero">
           <img
             src="/vite.svg"
             alt="Brainwave"
             className="h-9 w-auto max-w-[9rem] object-contain"
             width={144}
             height={36}
+            loading="eager"
+            fetchPriority="high"
           />
         </a>
 
