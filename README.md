@@ -1,5 +1,4 @@
-
-# 🧠 Brainwave – Modern UI/UX Landing Page React Website
+# Brainwave Landing Page – React, Vite, Typescript, Tailwind CSS Frontend Project
 
 ![Screenshot 2025-07-30 at 13 26 23](https://github.com/user-attachments/assets/56060732-b01f-4ed0-955c-76247b9d1ebe)
 ![Screenshot 2025-07-30 at 13 26 45](https://github.com/user-attachments/assets/577eca3a-a04e-46c5-b0b9-7c2e0ab7de94)
@@ -142,7 +141,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ```jsx
 // Import Section component
-import Section from './components/Section';
+import Section from "./components/Section";
 
 const MySection = () => (
   <Section id="custom-section" crosses>
@@ -199,7 +198,7 @@ Brainwave is a showcase of modern web design and development, built for learning
 
 ## Happy Coding! 🎉
 
-Feel free to use this Project Repository and extend this project further!  
+Feel free to use this Project Repository and extend this project further!
 
 If you have any questions or want to share your work, reach out via GitHub or my portfolio [https://arnob-mahmud.vercel.app/](https://arnob-mahmud.vercel.app/).
 

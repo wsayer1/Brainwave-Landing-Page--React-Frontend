@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+
+# Keep public/images tracked (do not ignore)
+!public/images
