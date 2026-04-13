@@ -20,9 +20,3 @@ declare module "*.jpeg" {
   const src: string;
   export default src;
 }
-
-/* scroll-lock has no built-in types; this allows typed use of disablePageScroll / enablePageScroll. */
-declare module "scroll-lock" {
-  export function disablePageScroll(): void;
-  export function enablePageScroll(): void;
-}

@@ -45,7 +45,8 @@ const Benefits = () => {
                     src={item.iconUrl}
                     width={48}
                     height={48}
-                    alt={item.title}
+                    alt=""
+                    loading="lazy"
                   />
                   <p className="ml-auto font-code text-xs font-bold text-n-1 uppercase tracking-wider">
                     Explore more
@@ -66,8 +67,9 @@ const Benefits = () => {
                       src={item.imageUrl}
                       width={380}
                       height={362}
-                      alt={item.title}
+                      alt=""
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   )}
                 </div>

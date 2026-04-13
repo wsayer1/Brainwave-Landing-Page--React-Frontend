@@ -44,6 +44,7 @@ const Services = () => {
                 alt="Smartest AI"
                 height={730}
                 src={service1}
+                loading="lazy"
               />
             </div>
 
@@ -65,7 +66,7 @@ const Services = () => {
               </ul>
             </div>
 
-            <Generating className="absolute left-4 right-4 bottom-4 border-n-1/10 border lg:left-1/2 lg-right-auto lg:bottom-8 lg:-translate-x-1/2" />
+            <Generating className="absolute left-4 right-4 bottom-4 border-n-1/10 border lg:left-1/2 lg:right-auto lg:bottom-8 lg:-translate-x-1/2" />
           </motion.div>
 
           <div className="relative z-1 grid gap-5 lg:grid-cols-2">
@@ -79,7 +80,8 @@ const Services = () => {
                   className="h-full w-full object-cover"
                   width={630}
                   height={750}
-                  alt="robot"
+                  alt="Photo editing"
+                  loading="lazy"
                 />
               </div>
 
@@ -140,7 +142,8 @@ const Services = () => {
                   className="w-full h-full object-cover"
                   width={520}
                   height={400}
-                  alt="Scary robot"
+                  alt="Video generation"
+                  loading="lazy"
                 />
 
                 <VideoChatMessage />

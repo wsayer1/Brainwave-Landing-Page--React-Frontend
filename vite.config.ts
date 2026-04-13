@@ -1,7 +1,22 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
 
-/** Vite config: React plugin enables Fast Refresh and JSX. Build output goes to dist/. */
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "framer-motion": ["framer-motion"],
+          "react-parallax": ["react-just-parallax"],
+        },
+      },
+    },
+  },
 });

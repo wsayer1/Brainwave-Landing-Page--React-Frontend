@@ -1,8 +1,8 @@
-/**
- * Renders left or right bracket SVG with gradient stroke. Used in Tagline for section labels.
- * Each bracket has its own gradient id (brackets-left, brackets-right) to avoid conflicts.
- */
-const brackets = (position: "left" | "right") =>
+interface BracketsProps {
+  position: "left" | "right";
+}
+
+const Brackets = ({ position }: BracketsProps) =>
   position === "left" ? (
     <svg
       width="5"
@@ -10,6 +10,7 @@ const brackets = (position: "left" | "right") =>
       viewBox="0 0 5 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <path d="M5 0.822266H1V12.8223H5" stroke="url(#brackets-left)" />
       <defs>
@@ -26,6 +27,7 @@ const brackets = (position: "left" | "right") =>
       viewBox="0 0 5 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <path
         d="M-2.98023e-08 0.822266H4V12.8223H-2.98023e-08"
@@ -46,4 +48,4 @@ const brackets = (position: "left" | "right") =>
     </svg>
   );
 
-export default brackets;
+export default Brackets;

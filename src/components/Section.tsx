@@ -26,20 +26,17 @@ const Section = ({
   children,
 }: SectionProps) => {
   return (
-    <motion.div
+    <motion.section
       id={id}
       className={`
-      relative 
+      relative
       ${
         customPaddings
           ? ""
           : `py-10 lg:py-16 xl:py-20 ${crosses ? "lg:py-32 xl:py-40" : ""}`
-      } 
+      }
       ${className ?? ""}`}
-      initial={fadeIn.initial}
-      whileInView={fadeIn.whileInView}
-      viewport={fadeIn.viewport}
-      transition={fadeIn.transition}
+      {...fadeIn}
     >
       {children}
 
@@ -57,7 +54,7 @@ const Section = ({
           <SectionSvg crossesOffset={crossesOffset} />
         </>
       )}
-    </motion.div>
+    </motion.section>
   );
 };
 

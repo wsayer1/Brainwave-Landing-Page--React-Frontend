@@ -8,41 +8,38 @@ import { check2, grid, loading1 } from "../assets";
 import { Gradient } from "./design/Roadmap";
 import { staggerContainer, staggerItem } from "../lib/motion";
 
-/**
- * Roadmap section: list of roadmap items with status (done / in progress) and images.
- * Each item shows date (Tagline), status badge (check2 or loading1 icon), image, title, text. colorful adds conic gradient border.
- */
 const Roadmap = () => (
   <Section className="overflow-hidden" id="roadmap">
     <div className="container md:pb-10">
       <Heading tag="Ready to get started" title="What we're working on" />
 
       <motion.div
-          className="relative grid gap-6 md:grid-cols-2 md:gap-4 md:pb-[7rem]"
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={staggerContainer.viewport}
-        >
-          {roadmap.map((item) => {
-            const status = item.status === "done" ? "Done" : "In progress";
+        className="relative grid gap-6 md:grid-cols-2 md:gap-4 md:pb-[7rem]"
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="whileInView"
+        viewport={staggerContainer.viewport}
+      >
+        {roadmap.map((item) => {
+          const status = item.status === "done" ? "Done" : "In progress";
 
-            return (
-              <motion.div
-                className={`md:flex even:md:translate-y-[7rem] p-0.25 rounded-[2.5rem] ${
+          return (
+            <motion.div
+              className={`md:flex even:md:translate-y-[7rem] p-0.25 rounded-[2.5rem] ${
                 item.colorful === true ? "bg-conic-gradient" : "bg-n-6"
-                }`}
-                key={item.id}
-                variants={staggerItem}
-              >
-                <div className="relative p-8 bg-n-8 rounded-[2.4375rem] overflow-hidden xl:p-15">
+              }`}
+              key={item.id}
+              variants={staggerItem}
+            >
+              <div className="relative p-8 bg-n-8 rounded-[2.4375rem] overflow-hidden xl:p-15">
                 <div className="absolute top-0 left-0 max-w-full">
                   <img
                     className="w-full"
                     src={grid}
                     width={550}
                     height={550}
-                    alt="Grid"
+                    alt=""
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative z-1">
@@ -55,7 +52,7 @@ const Roadmap = () => (
                         src={item.status === "done" ? check2 : loading1}
                         width={16}
                         height={16}
-                        alt={status}
+                        alt=""
                       />
                       <div className="tagline">{status}</div>
                     </div>
@@ -68,6 +65,7 @@ const Roadmap = () => (
                       width={628}
                       height={426}
                       alt={item.title}
+                      loading="lazy"
                     />
                   </div>
                   <h4 className="h4 mb-4">{item.title}</h4>

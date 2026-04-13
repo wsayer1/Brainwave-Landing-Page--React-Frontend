@@ -1,36 +1,40 @@
+import { lazy, Suspense } from "react";
+import { MotionConfig } from "framer-motion";
 import ButtonGradient from "./assets/svg/ButtonGradient";
-import Benefits from "./components/Benefits";
-import Collaboration from "./components/Collaboration";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Pricing from "./components/Pricing";
-import Roadmap from "./components/Roadmap";
-import Services from "./components/Services";
 
-/**
- * Root App component – layout wrapper for the Brainwave landing page.
- * Renders header, hero, benefits, collaboration, services, pricing, roadmap, footer,
- * and the shared button gradient SVG definitions.
- */
+const Benefits = lazy(() => import("./components/Benefits"));
+const Collaboration = lazy(() => import("./components/Collaboration"));
+const Services = lazy(() => import("./components/Services"));
+const Pricing = lazy(() => import("./components/Pricing"));
+const Roadmap = lazy(() => import("./components/Roadmap"));
+const Footer = lazy(() => import("./components/Footer"));
+
 const App = () => {
   return (
-    <>
-      {/* Top padding accounts for fixed header height; overflow-hidden avoids horizontal scroll from animations. */}
+    <MotionConfig reducedMotion="user">
+      <a href="#hero" className="skip-to-content">
+        Skip to content
+      </a>
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
         <Header />
-        <Hero />
-        <Benefits />
-        <Collaboration />
-        <Services />
-        <Pricing />
-        <Roadmap />
-        <Footer />
+        <main>
+          <Hero />
+          <Suspense>
+            <Benefits />
+            <Collaboration />
+            <Services />
+            <Pricing />
+            <Roadmap />
+          </Suspense>
+        </main>
+        <Suspense>
+          <Footer />
+        </Suspense>
       </div>
-
-      {/* Rendered once so Button components can reference gradient defs (btn-left, btn-top, etc.) by id. */}
       <ButtonGradient />
-    </>
+    </MotionConfig>
   );
 };
 

@@ -1,42 +1,50 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { disablePageScroll, enablePageScroll } from "scroll-lock";
+import { useCallback, useEffect, useState } from "react";
 
 import { navigation } from "../constants";
 import Button from "./Button";
 import MenuSvg from "../assets/svg/MenuSvg";
 import { HamburgerMenu } from "./design/Header";
 
-/**
- * Site header: logo, nav links, CTA, and mobile hamburger menu.
- * Uses scroll-lock when mobile menu is open to prevent background scroll.
- * Active nav item is determined by location.hash (e.g. #features). onlyMobile items hide on lg+.
- */
 const Header = () => {
-  const location = useLocation();
-  // useState holds the mobile menu open/closed state; toggling updates the UI and scroll lock.
+  const [hash, setHash] = useState(window.location.hash);
   const [openNavigation, setOpenNavigation] = useState(false);
+
+  useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  const closeNavigation = useCallback(() => {
+    setOpenNavigation(false);
+    document.body.style.overflow = "";
+  }, []);
 
   const toggleNavigation = () => {
     if (openNavigation) {
-      setOpenNavigation(false);
-      enablePageScroll();
+      closeNavigation();
     } else {
       setOpenNavigation(true);
-      disablePageScroll();
+      document.body.style.overflow = "hidden";
     }
   };
 
-  /* Close menu when a nav link is clicked (mobile). Enables scroll again. */
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && openNavigation) closeNavigation();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [openNavigation, closeNavigation]);
+
   const handleClick = () => {
     if (!openNavigation) return;
-    enablePageScroll();
-    setOpenNavigation(false);
+    closeNavigation();
   };
 
   return (
-    <div
-      className={`fixed top-0 left-0 w-full z-50  border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm ${
+    <header
+      className={`fixed top-0 left-0 w-full z-50 border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm ${
         openNavigation ? "bg-n-8" : "bg-n-8/90 backdrop-blur-sm"
       }`}
     >
@@ -54,6 +62,8 @@ const Header = () => {
         </a>
 
         <nav
+          aria-label="Main navigation"
+          id="main-nav"
           className={`${
             openNavigation ? "flex" : "hidden"
           } fixed top-[5rem] left-0 right-0 bottom-0 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent`}
@@ -67,7 +77,7 @@ const Header = () => {
                 className={`block relative font-code text-2xl uppercase text-n-1 transition-colors hover:text-color-1 ${
                   item.onlyMobile === true ? "lg:hidden" : ""
                 } px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-xs lg:font-semibold ${
-                  item.url === location.hash
+                  item.url === hash
                     ? "z-2 lg:text-n-1"
                     : "lg:text-n-1/50"
                 } lg:leading-5 lg:hover:text-n-1 xl:px-12`}
@@ -94,11 +104,14 @@ const Header = () => {
           className="ml-auto lg:hidden"
           px="px-3"
           onClick={toggleNavigation}
+          aria-expanded={openNavigation}
+          aria-controls="main-nav"
+          aria-label="Toggle menu"
         >
           <MenuSvg openNavigation={openNavigation} />
         </Button>
       </div>
-    </div>
+    </header>
   );
 };
 

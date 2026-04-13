@@ -1,14 +1,15 @@
-/**
- * ButtonSvg: gradient border pieces for the Button component. Called as ButtonSvg(white).
- * Renders left, top/bottom, and right SVG paths; references gradient ids from ButtonGradient (btn-left, btn-top, btn-bottom, btn-right). white=true = solid fill for light backgrounds.
- */
-const ButtonSvg = (white: boolean) => (
+interface ButtonSvgProps {
+  white: boolean;
+}
+
+const ButtonSvg = ({ white }: ButtonSvgProps) => (
   <>
     <svg
       className="absolute top-0 left-0"
       width="21"
       height="44"
       viewBox="0 0 21 44"
+      aria-hidden="true"
     >
       <path
         fill={white ? "white" : "none"}
@@ -23,6 +24,7 @@ const ButtonSvg = (white: boolean) => (
       viewBox="0 0 100 44"
       preserveAspectRatio="none"
       fill={white ? "white" : "none"}
+      aria-hidden="true"
     >
       {white ? (
         <polygon
@@ -50,6 +52,7 @@ const ButtonSvg = (white: boolean) => (
       width="21"
       height="44"
       viewBox="0 0 21 44"
+      aria-hidden="true"
     >
       <path
         fill={white ? "white" : "none"}
